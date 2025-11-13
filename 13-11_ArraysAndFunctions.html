@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Daniel Larva">
+    <title>Arrays and Functions</title>
+    <style>
+        pre {
+            width: min-content;
+            padding-right: 25px;
+            background-color: #94b1e3;
+        }
+    </style>
+</head>
+<body>
+<h1>Arrays</h1>
+<p>Arrays are used to store multiple values under one variable</p>
+<div style="background-color: #d5f5fd">
+<h2>Creating an array</h2>
+<p>The following code would create a script</p>
+<pre>
+    const nameOfArray = [];
+    nameOfArray[0] = value1;
+    nameOfArray[1] = value2;
+    nameOfArray[2] = value3;
+
+    console.log(nameOfArray);
+
+        > [value1, value2, value3]
+</pre>
+<p>The following works just as well</p>
+<pre>
+    const nameOfArray = [value1, value2, value3];
+</pre>
+</div>
+
+<h2>Looping an array</h2>
+<p>An array can be looped through with a regular for-loop or a for-of-loop</p>
+<p>for-loop</p>
+<pre>
+    const nameOfArray = [value1, value2, value3];
+
+    for (let i = 0; i < nameOfArray.length; i++) {
+        console.log(`Value: ${nameOfArray[i]}`);
+    }
+</pre>
+<p>for-of-loop</p>
+<pre>
+    for (let item of nameOfArray) {
+        console.log(`Value: ${item}`);
+</pre>
+
+<div style="background-color: #d5f5fd">
+<h2>Array methods</h2>
+<p>Arrays can be modified with an assortment of predefined methods</p>
+<pre>
+    nameOfArray.sort();
+</pre>
+<p>Sorts the array alphabetically</p>
+<pre>
+    nameOfArray.sort((a,b) => a-b);
+</pre>
+<p>Sorts the array numerically</p>
+<pre>
+    nameOfArray.reverse();
+</pre>
+<p>Reverses the order of the items in the array </p>
+<pre>
+    nameOfArray.shift();
+</pre>
+<p>Deletes and returns the value of the first item in an array</p>
+<pre>
+    nameOfArray.pop();
+</pre>
+<p>Deletes and returns the value of the last item in an array</p>
+<pre>
+    nameOfArray.push(value);
+</pre>
+<p>Adds the value as a new item to the end of the array, more convenient <br>
+    than the push technique at the top of the page</p>
+<pre>
+    nameOfArray.includes(value);
+</pre>
+<p>Returns True if the provided value is found in the array</p>
+</div>
+
+<h2>Object literals (a.k.a. dictionaries)</h2>
+<p>Object literals can be used to store multiple values under one variable, but also to <br>
+    link those values to a name. This allows for a sort of variable within a variable</p>
+<pre>
+    const arrayName = {
+        name: 'Steve',
+        address: '214 Royal Lane',
+        phoneNumber: '040 6745286',
+    };
+</pre>
+
+</body>
+</html>

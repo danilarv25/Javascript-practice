@@ -4,27 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Daniel Larva">
-    <title>Module 1 Tasks</title>
+    <title>Module 2 Tasks</title>
+    <style>
+        body {
+            line-height: 30px;
+        }
+    </style>
 </head>
 <script>
+    // CREATE AND PRINT AN ORDERED LIST OF NAMES
+    function makeList(times) {
+        const listLength = document.querySelector("#orderedNames").childElementCount;
+        if (listLength > 0) {
+            // console.log(document.querySelector("#orderedNames").childElementCount);
+            let list = document.querySelector("#orderedNames");
+            for (let i = 1; i <= listLength; i++) {
+                document.querySelector("#orderedNames li").remove();
+            }
+            // console.log(list);
+        }
+
+        if (times <= 0) {
+            document.getElementById('nameNumber').label = 'Invalid number';
+            return;
+        }
+
+        const namesUnsorted = [];
+
+        for (let i = 1; i <= times; i++) {
+            let name = prompt("Enter name");
+            namesUnsorted.push(name);
+        }
+        console.log(namesUnsorted);
+        let sortedNames = namesUnsorted.sort();
+        console.log(sortedNames);
+        for (let name of sortedNames) {
+            let newItem = document.createElement('li');
+            newItem.innerText = name;
+            document.getElementById('orderedNames').append(newItem);
+        }
+        console.log(document.querySelectorAll("#orderedNames"));
+    }
+
+    // STORE AND DISPLAY VOTES FOR GIVEN CANDIDATES
+    function runVote(c, v) {
+        const running = [];
+
+        // ENTER CANDIDATE NAMES
+        for (let i = 1; i <= c; i++) {
+            let name = prompt(`Name for candidate ${i}`);
+            let candv = {
+                name: name,
+                votes: 0,
+            }
+            running.push(candv);
+        }
+
+        // RECORD NAMES FOR LATER
+        const names = []
+        for (let place of running) {
+            names.push(place.name)
+        }
+        console.log(names)
+
+        // CAST VOTES
+        for (let i=1; i<=v; i++) {
+            let cast = prompt(`Vote ${i} (empty input = empty vote)`);
+            if (cast === "") {
+                console.log(`Vote skipped!`);
+            } else if (names.includes(cast)) {
+                for (let place of running) {
+                    if (cast === place.name) {
+                        place.votes++;
+                    }
+                }
+            } else {
+                alert(`Candidate name not in list!`);
+                i--;
+            }
+        }
+
+        console.log(running);
+
+        // SORT RESULTS BY VOTE COUNTS
+        let sorted = running.sort((a, b) => {
+            // console.log(a.votes, b.votes);
+            return b.votes - a.votes;
+        })
+        console.log(sorted);
+
+        // PRINT RESULTS TO CONSOLE
+        let result = `The winner is ${sorted[0].name} with ${sorted[0].votes} votes.\nresults:\n`;
+        for (let place of sorted) {
+            result = result + (`${place.name}: ${place.votes} votes\n`);
+        }
+        console.log(result);
+        document.getElementById("finalVote").innerText = "Results printed to console!"
+
+
+    }
 
 </script>
 <body>
 <h1>The completed tasks are 2 and 10</h1>
 
+
 <h2>Task 2 (2p): Names Alphabetically</h2>
-<button onclick="createAlphabeticalNameList()">Click me to create a sorted list of names</button>
-<p id="numbers"></p>
-<p id="sum"></p>
-<p id="product"></p>
-<p id="average"></p>
 
-<h2>Task 7 (2p): Sum of Dice</h2>
-<button onclick="diceSum()">Click me to roll the die and add the results</button>
-<p id="dicesum"></p>
+<label for="nameNumber">Number of Names</label><br>
+<input type="number" id="nameNumber" min="1"><br>
 
-<h2>Task 10 (5p): Dice Probabilities</h2>
-<button onclick="sumProb()">Click me to get the probability of a sum</button>
-<p id="sum-probability"></p>
+<button onclick="let times = document.getElementById('nameNumber').value;
+    makeList(times);">
+    Create name list</button>
+
+<ol id="orderedNames">
+
+</ol>
+
+<br>
+
+
+<h2>Task 10 (8p): Voting</h2>
+
+<label for="candidates">Number of Candidates</label><br>
+<input type="number" id="candidates" min="1"><br>
+<label for="voters">Number of Voters</label><br>
+<input type="number" id="voters" min="1"><br>
+
+<button onclick="let candidates = document.getElementById('candidates').value;
+    let voters = document.getElementById('voters').value;
+    runVote(candidates, voters);">
+    Run the vote</button>
+
+<p id="finalVote"></p>
+
+
+
 </body>
 </html>

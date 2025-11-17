@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #392424">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM and DOM Notes</title>
+</head>
+<style>
+    body {
+        color: white;
+    }
+
+</style>
+<body>
+<button onclick="alert('Caution')">Click for caution alert</button>
+<button onclick="confirmDelete()">Click for confirmation alert</button>
+<button onclick="greet()">Click for prompt</button>
+<p id="choice">delete me!</p>
+<p id="greeting"></p>
+<p>The url: <span id="displayURL"></span></p>
+<p>The window's width: <span id="displayWidth"></span></p>
+<p>The window's height: <span id="displayLength"></span></p>
+<script>
+    function confirmDelete() {
+        let userConfirmed = confirm("You wanna delete?");
+
+        if (userConfirmed) {
+            document.getElementById("choice").innerHTML = "Item deleted successfully!";
+        } else {
+            document.getElementById("choice").innerHTML = "delete me!";
+        }
+    }
+
+    function greet() {
+        let name = prompt('Who are you ?!')
+
+        if (!name) {
+            document.getElementById("greeting").innerHTML = `Hello stranger!`;
+        } else {
+            document.getElementById("greeting").innerHTML = `Hello ${name}!`
+        }
+    }
+
+    document.querySelector("#displayURL").innerHTML = location.href
+    document.getElementById("displayWidth").innerHTML = Math.floor(visualViewport.width)
+    document.getElementById("displayLength").innerHTML = Math.floor(visualViewport.height)
+</script>
+
+<!-- DOM -------------------------------------------------------------------------------------------------------------->
+
+<h1 id="logo"> Metropolia </h1>
+<!--<button class="button" id="b1" onclick="changeFormatting()">Make the list <b>bold</b></button>-->
+<button class="button" id="b1">Make the list <b>bold</b></button>
+<button class="button" id="b2" onclick="makePara()">Add a new paragraph from scratch</button>
+<p id="para1" onmouseover="secret()"
+   onmouseleave="document.getElementById('para1').innerText='Yo'; document.getElementById('para1').style.width='min-content';"
+   style="width: min-content">Yo</p>
+<p id="para2">Whaddup</p>
+<ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+</ul>
+
+<script>
+    const logoQ = document.querySelector("#logo");
+    console.log(logoQ);
+    logoQ.innerHTML = "<i>Metropolia but fancy</i>";
+
+    const b1Q = document.querySelector("#b1");
+    console.log(b1Q);
+
+    const b2Q = document.querySelector("#b2");
+    console.log(b2Q);
+
+    const logoGE = document.getElementById("logo");
+    console.log(logoGE);
+
+    const container = document.querySelector("body")
+    const paragraphs = container.getElementsByTagName("p");
+
+    console.log(paragraphs);
+
+    function secret() {
+        const para = document.querySelector("#para1");
+        para.style.width = "auto";
+        para.innerHTML = "Secret text!";
+    }
+
+    function makePara() {
+        const newPara = document.createElement('p');
+        newPara.innerText = "New paragraph through JavaScript!";
+        document.body.appendChild(newPara);
+    } // There's also .removeChild
+
+    b1Q.addEventListener('click', makeBold)
+
+    function makeBold() {
+        const wholeList = document.querySelectorAll("li")
+        wholeList.forEach(bullet => {
+            bullet.innerHTML = `<b>${bullet.innerHTML}</b>`;
+        })
+        document.getElementById("b1").innerHTML = `Make the text regular`
+        b1Q.removeEventListener('click', makeBold)
+        b1Q.addEventListener('click', makeRegular)
+    }
+
+    function makeRegular() {
+        const wholeList = document.querySelectorAll("li")
+        wholeList.forEach(bullet => {
+            // bullet.innerHTML = `${bullet.innerHTML}`;
+            bullet.innerHTML = bullet.innerText;
+        })
+        document.getElementById("b1").innerHTML = 'Make the text <b>bold</b>'
+        b1Q.removeEventListener('click', makeRegular)
+        b1Q.addEventListener('click', makeBold)
+    }
+
+    function changeFormatting() {
+        const buttonStatus = document.getElementById("b1").innerText
+        if (buttonStatus === 'Make the list bold') {
+            makeBold()
+            document.getElementById("b1").innerHTML = `Make the text regular`
+        } else {
+            makeRegular()
+            document.getElementById("b1").innerHTML = `Make the text <b>bold</b>`
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

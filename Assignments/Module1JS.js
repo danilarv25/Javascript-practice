@@ -1,5 +1,15 @@
 'use strict';
 
+function greet() {
+            let name = prompt('Who are you ?!')
+
+        if (!name) {
+            document.getElementById("greeting").innerHTML = `Hello, stranger!`;
+        } else {
+            document.getElementById("greeting").innerHTML = `Hello, ${name}!`
+        }
+}
+
 function calculate() {
     let x, y, z;
     x = parseInt(prompt("Enter 1st number"));

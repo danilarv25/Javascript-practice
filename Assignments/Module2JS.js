@@ -1,3 +1,22 @@
+'use strict'
+
+function reverseNumber() {
+    const numList = [];
+    for (let j = 1; j <= 5; j++) {
+        let number = parseInt(prompt(`Enter number ${j}`));
+        numList.push(number);
+    }
+    console.log(numList);
+    let reverseList = [];
+    let i = 1;
+    for (let num in numList) {
+        reverseList.push(numList[numList.length - i]);
+        i++;
+    }
+    console.log(reverseList);
+    document.getElementById("reversedNumbers").innerText = `${reverseList.toString()} \n (Also in console!)`;
+}
+
 // CREATE AND PRINT AN ORDERED LIST OF NAMES
 function makeList(times) {
     const listLength = document.querySelector("#orderedNames").childElementCount;

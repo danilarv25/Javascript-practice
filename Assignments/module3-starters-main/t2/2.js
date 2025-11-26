@@ -1,0 +1,12 @@
+'use strict';
+let new1 = document.createElement('li');
+let new2 = document.createElement('li');
+let new3 = document.createElement('li');
+let mylist = document.getElementById('target');
+let item1 = mylist.appendChild(new1);
+let item2 = mylist.appendChild(new2);
+let item3 = mylist.appendChild(new3);
+item1.innerText = 'First item';
+item2.innerText = 'Second item';
+item3.innerText = 'Third item';
+item2.setAttribute("class", "my-item");

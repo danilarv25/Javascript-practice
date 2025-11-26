@@ -1,3 +1,9 @@
-# module3-starters
+# Links to completed tasks
 
-Green 'Code' button up there -> Download ZIP
+[Task 1](t1DONE)
+
+[Task 2](t2DONE)
+
+[Task 3](t3DONE)
+
+[Task 8](t8DONE)

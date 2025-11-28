@@ -1,3 +1,4 @@
+'use strict';
 const button = document.querySelector('#start');
 button.addEventListener('click', calculate);
 const result = document.querySelector('#result')
